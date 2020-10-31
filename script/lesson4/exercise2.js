@@ -65,6 +65,3 @@ TestCart.addToCart(product1, 5)
 console.log(TestCart)
 console.log(product1)
 
-// 1. В функцию addToCart добавить проверку на наличие товара
-// 2. Реализовать подсчет стоимости и количества + добавление имени товара
-
