@@ -27,9 +27,7 @@ class cart {
             console.log("К сожалению, товаров в нужном количестве не имеется в наличии")
         }
         else {
-            list.forEach(element => {
-                this.products.push(element)
-            });
+            this.products.push(...list)
             this.countTotalPrice()
             this.countTotalQuantity()
         }
