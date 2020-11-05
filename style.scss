@@ -1,0 +1,18 @@
+.wrapper {
+}
+
+.chess-zone {
+    width: 75vh;
+    height: 75vh;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.white_bg {
+    background-color: #fff;
+}
+
+.black_bg {
+    background-color: black;
+}
