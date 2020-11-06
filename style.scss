@@ -1,18 +1,55 @@
 .wrapper {
+    width: 100vh;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-columns: 100px 1fr 100px;
+}
+
+.letters-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.upper-letters {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: flex-end;
+}
+
+.lower-letters {
+    grid-column: 2;
+    grid-row: 3;
 }
 
 .chess-zone {
-    width: 75vh;
-    height: 75vh;
+    grid-column: 2;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-columns: repeat(8, 1fr);
 }
 
 .white_bg {
-    background-color: #fff;
+    background-color: #FFCE9E;
 }
 
 .black_bg {
-    background-color: black;
+    background-color: #D18B47;
+}
+
+.numbers-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+}
+
+.left-numbers {
+    grid-column: 1;
+    grid-row: 2;
+    align-items: flex-end;
+}
+
+.right-numbers {
+    grid-column: 3;
+    grid-row: 2;
 }
