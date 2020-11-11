@@ -2,87 +2,171 @@
 // Список (html) формируем динамически, как это делали с меню на занятии.
 
 class cart {
-    products = []
-    totalPrice = 0
-    totalQuantity = 0
-    countTotalPrice() {
-        let current = this.products.reduce((sum, current) => sum + current, 0)
-        this.totalPrice = current
-        return this.totalPrice
+  products = [];
+  amount = 0;
+  quantity = 0;
+  _couponValue = "renoshop";
+  _giftVouvcher = "gift";
+  countTotalAmount() {
+    this.amount = this.products.reduce(
+      (total, currentValue) => total + currentValue.amount,
+      0
+    );
+    return this.amount;
+  }
+  countTotalQuantity() {
+    this.quantity = this.products.length;
+    return this.quantity;
+  }
+  addToCart(product, quantity) {
+    let list = product.buy(quantity);
+    if (list === null) {
+      console.log(
+        "К сожалению, товаров в нужном количестве не имеется в наличии"
+      );
+    } else {
+      this.products.push(list);
+      this.countTotalAmount();
+      this.countTotalQuantity();
     }
-    countTotalQuantity() {
-        this.totalQuantity = this.products.length
-        return this.totalQuantity
-    }
-    addToCart(product, quantity) {
-        let list = product.buy(quantity)
-        if (list === null) {
-            console.log("К сожалению, товаров в нужном количестве не имеется в наличии")
-        }
-        else {
-            this.products.push(...list)
-            this.countTotalPrice()
-            this.countTotalQuantity()
-        }
-    }
+  }
+  setCouponValue(value) {
+    this._couponValue = value;
+  }
+  getCouponValue() {
+    return this._couponValue;
+  }
+  setGiftVoucher(value) {
+    this._giftVouvcher = value;
+  }
+  getGiftVoucher() {
+    return this._giftVouvcher;
+  }
 }
 
 class product {
-    constructor(name, price, quantity, image) {
-        this.name = name
-        this.price = price
-        this.quantity = quantity
-        this.image = image
+  constructor(name, price, quantity, imageLink) {
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+    this.image = imageLink;
+  }
+  buy(quantity) {
+    if (quantity > this.quantity) {
+      return null;
+    } else {
+      this.quantity = this.quantity - quantity;
+      let boughtProducts = {};
+      boughtProducts.name = this.name;
+      boughtProducts.price = this.price;
+      boughtProducts.quantity = quantity;
+      boughtProducts.amount = boughtProducts.quantity * boughtProducts.price;
+      boughtProducts.image = this.image;
+      return boughtProducts;
     }
-    buy(quantity) {
-        if (quantity > this.quantity) {
-            return null
-        }
-        else {
-            this.quantity = this.quantity - quantity;
-            let list = [];
-            for (; quantity > 0; quantity--) {
-                let boughtProduct = {}
-                list.push(this.price)
-            }
-            return list
-        }
-    }
+  }
 }
 
-let cartContainer = document.createElement('div')
-cartContainer.classList.add('cart-container')
+const product1 = new product("Футболка", 5, 100, "t-shirt");
+const product2 = new product("Брюки карго", 20, 50, "cargo");
+const product3 = new product("Мужское худи", 17, 20, "hoodie");
+const product4 = new product("Джинсы", 30, 40, "jeans");
+const product5 = new product("Женский пуловер", 25, 30, "pullover");
 
-let shoppingList = document.createElement('div')
-shoppingList.classList.add('cart_list')
+const mainCart = new cart();
 
-let product1 = new product('t-shirt', 5, 100, 'n/a')
-let product2 = new product('cargo', 20, 50, 'n/a')
-let product3 = new product('hoodie', 17, 20, 'n/a')
-let product4 = new product('jeans', 30, 40, 'n/a')
-let product5 = new product('pullover', 25, 30, 'n/a')
+mainCart.addToCart(product1, 5);
+mainCart.addToCart(product2, 10);
+mainCart.addToCart(product3, 15);
+mainCart.addToCart(product4, 20);
+mainCart.addToCart(product5, 20);
 
-let mainCart = new cart
+const cartContainer = document.createElement("div");
+cartContainer.classList.add("cart-container");
+document.body.append(cartContainer);
 
-mainCart.addToCart(product1, 5)
-mainCart.addToCart(product2, 10)
-mainCart.addToCart(product3, 15)
-mainCart.addToCart(product4, 10)
-mainCart.addToCart(product5, 20)
+const cartTitles = document.createElement("div");
+cartTitles.classList.add("cart-titles");
 
-mainCart.products.forEach(product => {
-    let cartItem = document.createElement('div')
-    cartItem.classList.add('cart_item')
+let titleTemplate = ["Product", "Quantity", "Price", "Total"];
+titleTemplate.forEach((title) => {
+  const cartTitle = document.createElement("div");
+  cartTitle.classList.add("cart-title");
+  cartTitle.innerText = `${title}`;
+  cartTitles.append(cartTitle);
+});
 
-    let cartItemImage = document.createElement('img')
-    cartItemImage.classList.add('cart_item-image')
-    cartItemImage.setAttribute('src', `images/${product.name}.jpg`)
+cartContainer.append(cartTitles);
 
-    let cartItemQuantity = document.createElement('div')
-    cartItemQuantity.classList.add('cart_item-quantity')
-    cartItemQuantity.innerText(`${product.}`)
-})
+mainCart.products.forEach((product) => {
+  const cartItemProduct = document.createElement("div");
+  cartItemProduct.classList.add("cart-item_product");
+  cartItemProduct.innerText = `${product.name}`;
 
-//ToDo: переделать метод buy у класса product: он должен передавать в корзину объект-товар с тремя свойствами - названием, ценой и количеством
+  const cartItemImage = document.createElement("img");
+  cartItemImage.classList.add("cart-item_image");
+  cartItemImage.setAttribute("src", `images/${product.image}.jpg`);
+  cartItemImage.setAttribute("alt", `${product.name}`);
+  cartItemProduct.prepend(cartItemImage);
 
+  const cartItemQuantity = document.createElement("div");
+  cartItemQuantity.classList.add("cart-item_quantity");
+  cartItemQuantity.innerText = `${product.quantity}`;
 
+  const cartItemPrice = document.createElement("div");
+  cartItemPrice.classList.add("cart-item_price");
+  cartItemPrice.innerText = `\$${product.price}`;
+
+  const cartItemAmount = document.createElement("div");
+  cartItemAmount.classList.add("cart-item_amount");
+  cartItemAmount.innerText = `\$${product.amount}`;
+
+  const cartItem = document.createElement("div");
+  cartItem.classList.add("cart-item");
+  cartItem.append(
+    cartItemProduct,
+    cartItemQuantity,
+    cartItemPrice,
+    cartItemAmount
+  );
+
+  cartContainer.append(cartItem);
+});
+
+const mainContainer = document.querySelector(".main-container");
+const discounts = mainContainer.querySelector(".discounts");
+discounts.before(cartContainer);
+
+const cartTotal = document.createElement("div");
+cartTotal.classList.add("cart-total");
+
+const cartTotalQuantity = document.createElement("div");
+cartTotalQuantity.classList.add("cart-total_quantity");
+
+const cartTotalQuantityDescription = document.createElement("p");
+cartTotalQuantityDescription.classList.add("cart-total_description");
+cartTotalQuantityDescription.innerText = "Общее количество позиций:";
+
+const cartTotalQunatityValue = document.createElement("p");
+cartTotalQunatityValue.classList.add("cart-total_value");
+cartTotalQunatityValue.innerText = `${mainCart.quantity}`;
+
+cartTotalQuantity.append(cartTotalQuantityDescription, cartTotalQunatityValue);
+
+const cartTotalAmount = document.createElement("div");
+cartTotalAmount.classList.add("cart-total_amount");
+
+const cartTotalPriceDescription = document.createElement("p");
+cartTotalPriceDescription.classList.add("cart-total_description");
+cartTotalPriceDescription.innerText = "Итоговая стоимость заказа:";
+
+const cartTotalPriceValue = document.createElement("p");
+cartTotalPriceValue.classList.add("cart-total_value");
+cartTotalPriceValue.innerText = `$${mainCart.amount}`;
+
+cartTotalAmount.append(cartTotalPriceDescription, cartTotalPriceValue);
+
+cartTotal.append(cartTotalQuantity, cartTotalAmount);
+
+const totalTitle = document.querySelector(".total > .heading");
+totalTitle.after(cartTotal);

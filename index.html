@@ -3,11 +3,305 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GeekBrains</title>
-    <link rel="stylesheet" href="style.css">
+    <title>RenoshopBee</title>
+    <link rel="stylesheet" href="style/reset.css" />
+    <link rel="stylesheet" href="style/lesson5/exercise1.css" />
+    <link rel="stylesheet" href="style/lesson5/exercise2.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/3d9bf02150.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-<!-- <script src="script/lesson5/exercise1.js"></script> -->
-<script src="script/lesson5/exercise2.js"></script>
-</body>
+    <header>
+      <div class="top-header">
+        <ul class="top-header_contacts">
+          <li class="top-header_contacts-item">
+            <i class="fas fa-phone-alt top-header_contacts-icon"></i
+            ><a class="top-header_link" href="tel:+1123456789"
+              >+1 123 456 789</a
+            >
+          </li>
+          <li class="top-header_contacts-item">
+            <i class="fas fa-envelope top-header_contacts-icon"></i
+            ><a href="mailto:info@company.com" class="top-header_link"
+              >info@company.com</a
+            >
+          </li>
+        </ul>
+        <ul class="top-header_socials">
+          <li class="top-header_socials-item">
+            <i class="fab fa-facebook-f"></i>
+          </li>
+          <li class="top-header_socials-item">
+            <i class="fab fa-twitter"></i>
+          </li>
+          <li class="top-header_socials-item">
+            <i class="fab fa-instagram"></i>
+          </li>
+          <li class="top-header_socials-item">
+            <i class="fab fa-linkedin-in"></i>
+          </li>
+          <li class="top-header_socials-item">
+            <i class="fab fa-behance"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="bottom-header">
+        <div class="logo">
+          <span class="logo_green">renoshop</span
+          ><span class="logo_black">bee</span>
+        </div>
+        <nav class="menu">
+          <div class="menu-item">Home</div>
+          <div class="menu-item">Women</div>
+          <div class="menu-item">Men</div>
+          <div class="menu-item">Kids</div>
+          <div class="menu-item">Jewellery</div>
+          <div class="menu-item">Accessories</div>
+        </nav>
+        <div class="right-menu">
+          <button class="right-menu_item">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <button class="right-menu_item"><i class="fas fa-search"></i></button>
+          <button class="right-menu_item"><i class="fas fa-bars"></i></button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="main-container container">
+        <ul class="bread-crumbs">
+          <li class="bread-crumbs_item">
+            <a href="#" class="bread-crumbs_link">Home</a>
+          </li>
+          <li class="bread-crumbs_item">
+            <a href="#" class="bread-crumbs_link">Page</a>
+          </li>
+          <li class="bread-crumbs_item">
+            <a href="#" class="bread-crumbs_link">Shop</a>
+          </li>
+          <li class="bread-crumbs_item">
+            <a href="#" class="active">Cart</a>
+          </li>
+        </ul>
+        <div class="discounts">
+          <div class="coupon-block">
+            <h3 class="heading">Use Coupon Code</h3>
+            <p class="instruction">Enter your coupon here</p>
+            <form class="discount_form" action="#">
+              <input
+                class="text-field"
+                type="text"
+                placeholder="Enter your coupon here"
+              />
+              <input class="apply-btn" type="submit" value="Apply" />
+            </form>
+          </div>
+          <div class="gift-block">
+            <h3 class="heading">Use Gift Voucher</h3>
+            <p class="instruction">Enter Your Gift Voucher Code Here</p>
+            <form class="discount_form" action="#">
+              <input
+                class="text-field gift-field"
+                type="text"
+                placeholder="Enter Your Gift Voucher Code Here"
+              />
+              <input class="apply-btn" type="submit" value="Apply" />
+            </form>
+          </div>
+        </div>
+        <div class="calculations">
+          <div class="shipping">
+            <form action="#">
+              <h3 class="heading">Shipping Availability</h3>
+              <p class="instruction">Select Country</p>
+              <select
+                class="calculations_form-element"
+                name="country"
+                id="country-selection"
+              >
+                <option value="russia">Russian Federation</option>
+                <option value="ukraine">Ukraine</option>
+                <option value="kazakhstan">Kazakhstan</option>
+                <option value="belarus">Belarus</option>
+              </select>
+              <p class="instruction">Select City</p>
+              <select
+                class="calculations_form-element"
+                name="city"
+                id="city-selection"
+              >
+                <option value="russia">Moscow</option>
+                <option value="ukraine">Saint-Petersburg</option>
+                <option value="kazakhstan">Volgograd</option>
+                <option value="belarus">Sochi</option>
+              </select>
+              <p class="instruction">Postcode / Zip</p>
+              <input
+                class="calculations_form-element"
+                type="text"
+                placeholder="Postcode / Zip"
+              />
+              <input
+                class="shipping_submit"
+                type="submit"
+                value="Update Totals"
+              />
+            </form>
+          </div>
+          <div class="total">
+            <h3 class="heading">Shopping cart calcuation</h3>
+            <input
+              class="checkout-btn"
+              type="submit"
+              value="Proceed to Checkout"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <section class="top-footer">
+        <div class="top-footer_container">
+          <p class="top-footer_text">
+            We’re confident we’ve provided all the best for you. Stay connect
+            with us
+          </p>
+          <div class="top-footer_socials">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-behance"></i>
+          </div>
+        </div>
+      </section>
+      <section class="middle-footer">
+        <div class="middle-footer_container">
+          <div class="information">
+            <h3 class="footer-heading">information</h3>
+            <ul class="middle-footer_column">
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Delivery Information</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Discount</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Sitemap</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Privacy Policy</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">My Account</a>
+              </li>
+            </ul>
+          </div>
+          <div class="my-account">
+            <h3 class="footer-heading">My account</h3>
+            <ul class="middle-footer_column">
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Sign In</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">View Cart</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">My Wishlist</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Check out</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Track My Order</a>
+              </li>
+            </ul>
+          </div>
+          <div class="help">
+            <h3 class="footer-heading">Help</h3>
+            <ul class="middle-footer_column">
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">F.A.Q.</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Shipping</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Contact Us</a>
+              </li>
+              <li class="middle-footer_col-item">
+                <a class="middle-footer_link" href="#">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="contact-info">
+            <h3 class="footer-heading">Contact info</h3>
+            <ul class="contact-info_list">
+              <li class="middle-footer_col-item">
+                <i class="fas fa-globe-europe contact-info_item-marker"></i>1234
+                Your Address, Country.
+              </li>
+              <li class="middle-footer_col-item">
+                <i class="fas fa-phone-alt contact-info_item-marker"></i
+                ><a href="tel:+123456789999" class="middle-footer_link"
+                  >+1 234 5678 9999</a
+                >
+              </li>
+              <li class="middle-footer_col-item">
+                <i class="fas fa-envelope contact-info_item-marker"></i
+                ><a href="mailto:mail@domain.com" class="middle-footer_link"
+                  >mail@domain.com</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="bottom-footer">
+        <div class="bottom_footer_container">
+          <div class="bottom-footer_text-block">
+            <p class="copyright">
+              Copyright 2017 RenoshopBee all right reserved
+            </p>
+            <p class="design">Design by BeeStudios</p>
+          </div>
+          <div class="pay-systems">
+            <img
+              src="images/footer/pay-systems/visa5.png"
+              alt="Visa"
+              class="pay-icon"
+            />
+            <img
+              src="images/footer/pay-systems/paypal11.png"
+              alt="PayPal"
+              class="pay-icon"
+            />
+            <img
+              src="images/footer/pay-systems/amazon3.png"
+              alt="Amazon"
+              class="pay-icon"
+            />
+            <img
+              src="images/footer/pay-systems/maestro1.png"
+              alt="Maestro"
+              class="pay-icon"
+            />
+            <img
+              src="images/footer/pay-systems/card34.png"
+              alt="American Express"
+              class="pay-icon"
+            />
+          </div>
+        </div>
+      </section>
+    </footer>
+    <!-- <script src="script/lesson5/exercise1.js"></script> -->
+    <script src="script/lesson5/exercise2.js"></script>
+  </body>
 </html>
