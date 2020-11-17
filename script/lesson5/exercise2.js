@@ -1,7 +1,7 @@
 // 2. Делаем корзину. Есть массив с товарами. Делаем блок с корзиной. Выводим каждый товар в этом блоке. Под списком товаров выводим их цену.
 // Список (html) формируем динамически, как это делали с меню на занятии.
 
-class cart {
+class Cart {
   products = [];
   amount = 0;
   quantity = 0;
@@ -44,7 +44,7 @@ class cart {
   }
 }
 
-class product {
+class Product {
   constructor(name, price, quantity, imageLink) {
     this.name = name;
     this.price = price;
@@ -67,13 +67,13 @@ class product {
   }
 }
 
-const product1 = new product("Футболка", 5, 100, "t-shirt");
-const product2 = new product("Брюки карго", 20, 50, "cargo");
-const product3 = new product("Мужское худи", 17, 20, "hoodie");
-const product4 = new product("Джинсы", 30, 40, "jeans");
-const product5 = new product("Женский пуловер", 25, 30, "pullover");
+const product1 = new Product("Футболка", 5, 100, "t-shirt");
+const product2 = new Product("Брюки карго", 20, 50, "cargo");
+const product3 = new Product("Мужское худи", 17, 20, "hoodie");
+const product4 = new Product("Джинсы", 30, 40, "jeans");
+const product5 = new Product("Женский пуловер", 25, 30, "pullover");
 
-const mainCart = new cart();
+const mainCart = new Cart();
 
 mainCart.addToCart(product1, 5);
 mainCart.addToCart(product2, 10);

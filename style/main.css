@@ -344,7 +344,7 @@ ul.bread-crumbs {
 .calculations {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 170px;
+  margin-bottom: 20px;
 }
 
 .calculations_form-element {
@@ -390,7 +390,6 @@ ul.bread-crumbs {
 }
 
 .cart-total {
-  height: 280px;
   border: 1px solid #a3a2a3;
   margin-bottom: 20px;
   padding: 35px;
@@ -424,6 +423,57 @@ ul.bread-crumbs {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.7px;
+}
+
+.list-container {
+  width: 1140;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 50px;
+  row-gap: 50px;
+  margin-bottom: 100px;
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.item-img {
+  height: 250px;
+  border: 1px solid #000;
+  grid-row: 1/6;
+}
+
+.item-price {
+  color: #3cb878;
+}
+
+.quantity-field {
+  height: 30px;
+  width: 50px;
+  padding: 5px;
+}
+
+.add-btn {
+  text-decoration: none;
+  color: #333333;
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  border: 1px solid #eeeeee;
+  color: #333333;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: normal;
+  text-align: center;
+  padding: 15px 0;
+  cursor: pointer;
 }
 
 .top-footer_container,
@@ -553,4 +603,4 @@ ul.bread-crumbs {
   content: "-";
   padding-right: 10px;
 }
-/*# sourceMappingURL=exercise2.css.map */
+/*# sourceMappingURL=main.css.map */
