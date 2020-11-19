@@ -27,8 +27,8 @@ class Cart {
     return this.quantity;
   }
 
-  addToCart(product, quantity) {
-    let boughtProduct = product.getProduct(quantity);
+  addToCart(product) {
+    let boughtProduct = product.getBoughtProduct();
     let indexOfExisting = this.products.findIndex(
       (cartItem) => cartItem.id == boughtProduct.id
     );
@@ -45,12 +45,34 @@ class Cart {
       let existingItem = this.products[indexOfExisting];
       existingItem.quantity += boughtProduct.quantity;
       existingItem.amount += boughtProduct.amount;
-      existingItem.updated = true;
       this.countTotalAmount();
       this.countTotalQuantity();
       this.render();
     }
   }
+
+  decreaseCart(product) {
+    let indexOfExisting = this.products.findIndex(
+      (cartItem) => cartItem.id == product.id
+    );
+    if (indexOfExisting === -1) {
+      console.log("Данный товар еще не был добавлен в корзину");
+    } else {
+      let decreasedProduct = this.products[indexOfExisting];
+      decreasedProduct.quantity--;
+      if (decreasedProduct.quantity < 1) {
+        this.products.splice(indexOfExisting, 1);
+      } else {
+        decreasedProduct.amount =
+          decreasedProduct.quantity * decreasedProduct.price;
+      }
+      this.countTotalAmount();
+      this.countTotalQuantity();
+      this.render();
+      // updateProduct();
+    }
+  }
+
   render() {
     // Создаем основной контейнер корзины со списком товаров
     if (!this.container) {
@@ -178,7 +200,9 @@ class Product {
     this.id = id;
   }
 
-  getProduct(quantity) {
+  getBoughtProduct() {
+    let quantityField = document.getElementById(`${this.id}`);
+    let quantity = +quantityField.value;
     if (quantity > this.quantity) {
       return null;
     } else {
@@ -196,7 +220,7 @@ class Product {
 
   btnClicked() {
     const cart = MyCart;
-    MyCart.addToCart(this, 1);
+    MyCart.addToCart(this);
   }
 
   createButton() {
@@ -212,11 +236,26 @@ class Product {
   createQuantityField() {
     const qnt = document.createElement("input");
     qnt.classList.add("quantity-field");
+    qnt.id = this.id;
     qnt.setAttribute("type", "number");
     qnt.setAttribute("min", "1");
     qnt.setAttribute("max", `${this.quantity}`);
     qnt.setAttribute("value", "1");
     return qnt;
+  }
+
+  createDecreaseButton() {
+    let btn = document.createElement("a");
+    btn.classList.add("decrease-button");
+    btn.insertAdjacentHTML("afterbegin", '<i class="far fa-minus-square"></i>');
+
+    btn.addEventListener("click", this.decreaseBtnClicked.bind(this));
+    return btn;
+  }
+
+  decreaseBtnClicked() {
+    const cart = MyCart;
+    MyCart.decreaseCart(this);
   }
 }
 
@@ -262,12 +301,18 @@ class List {
         itemQuantity.classList.add("item-quantity");
         itemQuantity.innerText = `Наличие: ${product.quantity} шт.`;
 
+        const itemQuantityCounters = document.createElement("div");
+        itemQuantityCounters.append(
+          product.createQuantityField(),
+          product.createDecreaseButton()
+        );
+
         item.append(
           itemImage,
           itemName,
           itemPrice,
           itemQuantity,
-          product.createQuantityField(),
+          itemQuantityCounters,
           product.createButton()
         );
         this.element.append(item);
