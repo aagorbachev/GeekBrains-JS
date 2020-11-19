@@ -455,6 +455,11 @@ ul.bread-crumbs {
   height: 30px;
   width: 50px;
   padding: 5px;
+  margin-right: 5px;
+}
+
+.decrease-button {
+  cursor: pointer;
 }
 
 .add-btn {
